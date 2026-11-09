@@ -1,13 +1,13 @@
 ﻿param([switch]$Json)
 $ErrorActionPreference='Stop'
-$report=[ordered]@{edition='API';version='1.0.0'}
+$report=[ordered]@{edition='API';version='1.1.0'}
 $settings=Join-Path $PSScriptRoot 'settings.json'
 if(Test-Path -LiteralPath $settings) {
   $config=Get-Content -Raw -LiteralPath $settings | ConvertFrom-Json
   $report.Python=$config.python_executable
   $report.McpRepository=$config.mcp_repository
 }
-$build=Join-Path $PSScriptRoot 'build-v1.0.0'
+$build=Join-Path $PSScriptRoot 'build-v1.1.0'
 $dll=Join-Path $build 'RoboMaster.Workbench.dll'
 $report.AddinDll=Test-Path -LiteralPath $dll
 $report.TypeLibrary=Test-Path -LiteralPath (Join-Path $build 'RoboMaster.Workbench.tlb')
