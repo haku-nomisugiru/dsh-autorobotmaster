@@ -12,7 +12,27 @@ DSH AutoRoboMaster 是基于 SolidWorks MCP 的 Windows 机械设计工作台，
 
 当前自动执行范围限于单零件。整车自动设计、复杂机构自动插入、运动和制造验证需要单独处理。
 
-## 安装与启动
+## 下载与安装
+
+下载 [Windows x64 安装包](https://github.com/haku-nomisugiru/dsh-autorobotmaster/releases/download/v1.1.0/DSH-AutoRoboMaster-v1.1.0-win-x64.zip) · [Release 与 SHA-256](https://github.com/haku-nomisugiru/dsh-autorobotmaster/releases/tag/v1.1.0)。
+
+1. 准备 Windows x64、.NET Framework 4.x、64 位 Python 3.10+ 和已正常启动过的 SolidWorks 2025。此预编译版使用 SolidWorks 2025 SP4 的 PIA（`33.4.0.81`）。其他 PIA 版本可按下方说明从源码构建。
+2. 将 ZIP 完整解压到当前用户可写的固定目录。准备 [SolidWorks MCP](https://github.com/wzyn20051216/solidworks-automation-skill) 的本机副本。已有副本可直接使用。
+3. 退出 SolidWorks，在解压目录打开 64 位 Windows PowerShell。将示例路径换成实际位置后运行。
+
+~~~powershell
+$swApi = 'C:\Program Files\SOLIDWORKS Corp\SOLIDWORKS\api\redist'
+$mcp = 'C:\Projects\solidworks-automation-skill'
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1 -SolidWorksApiDir $swApi -McpRepository $mcp
+~~~
+
+安装脚本在本机创建 Python 虚拟环境并安装依赖，从你的 SolidWorks 安装目录复制匹配的互操作组件，再通过 UAC 注册加载项。可用 `-PythonExecutable` 指定解释器，或用 `-PrepareOnly` 仅准备文件与依赖。安装包已包含工作台 DLL 和 EXE，无需编译器。
+
+4. 打开 SolidWorks，在“工具 → 加载项”启用“RoboMaster 机械设计工作台”，点击右侧 RM 图标。然后按下文配置模型 API 和 CAD RAG。
+
+升级时先关闭 SolidWorks，在旧目录取消注册，再安装新版。原有 `settings.json` 和 `data/` 可备份后迁移，移动目录后请更新 Python 与 MCP 路径。
+
+## 从源码构建
 
 需要 Windows x64、已安装并正常启动过的 SolidWorks、.NET Framework 4.x、Python 3.10+ 和 Visual Studio Build Tools 的 Roslyn C# 编译器。SolidWorks 的 API redist 目录须有 SolidWorks.Interop.sldworks.dll、SolidWorks.Interop.swconst.dll 和 SolidWorks.Interop.swpublished.dll。工作台和 SolidWorks 应由同一 Windows 用户以相容权限运行。
 
