@@ -1,0 +1,1 @@
+预编译的 SolidWorks 工作台安装包。需要 Windows x64、.NET Framework 4.x、64 位 Python 3.10+、SolidWorks 2025 SP4 PIA（33.4.0.81）及本机 SolidWorks MCP 源码副本。完整解压后，按包内 README 运行 setup.ps1。安装程序会从本机安装目录取得 SolidWorks 互操作文件。另附 ZIP 的 SHA-256 校验文件。
