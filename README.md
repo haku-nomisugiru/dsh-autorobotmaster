@@ -1,0 +1,2 @@
+# dsh-autorobotmaster
+基于solidworks-automation-skill制作的dsh原生自动化robotmaster平台，一个solidworks插件
