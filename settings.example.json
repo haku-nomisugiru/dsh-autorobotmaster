@@ -1,0 +1,9 @@
+{
+  "python_executable": "C:\\Projects\\RoboMasterWorkbench\\.venv\\Scripts\\python.exe",
+  "mcp_repository": "C:\\Projects\\solidworks-automation-skill",
+  "mcp_python": "C:\\Projects\\RoboMasterWorkbench\\.venv\\Scripts\\python.exe",
+  "cad_library_url": "http://127.0.0.1:8765",
+  "max_new_documents": 3,
+  "auto_summary_after_accept": true,
+  "auto_compact_history": true
+}

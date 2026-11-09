@@ -1,0 +1,4 @@
+interface:
+  display_name: "RoboMaster 原生建模与迭代验收"
+  short_description: "复用真实开源机构，建立原生配合，并按实际姿态与几何结果验收"
+  default_prompt: "使用 $robomaster-solidworks-modeling，根据现有模型与本项目要求，先核对机构和接口，再完成原生建模、运动配合与证据验收。"

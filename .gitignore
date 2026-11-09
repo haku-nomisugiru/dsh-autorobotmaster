@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.py[cod]
+build/
+build-*/
+data/
+skills/learned/
+settings.json
+.env
+.env.*
+*.snk
+*.bin
+*.dll
+*.exe
+*.tlb
+*.zip
+*.sha256
