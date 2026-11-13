@@ -17,6 +17,11 @@ def api(endpoint):
     return json.loads(gh('api', endpoint))
 
 
+def find_release(repo, tag):
+    pages = json.loads(gh('api', '--paginate', '--slurp', f'repos/{repo}/releases'))
+    return next((r for page in pages for r in page if r['tag_name'] == tag), None)
+
+
 def verify_assets(release, assets):
     actual = {a['name']: a for a in release['assets']}
     if set(actual) != {a['name'] for a in assets}:
@@ -50,14 +55,23 @@ def main():
     sums = ''.join(f"{a['sha256']}  {a['name']}\n" for a in assets).encode('ascii')
     checksums = {'name': 'SHA256SUMS.txt', 'size': len(sums), 'sha256': hashlib.sha256(sums).hexdigest()}
     expected = [*assets, checksums]
-    releases = json.loads(gh('api', '--paginate', '--slurp', f'repos/{repo}/releases'))
-    existing = next((r for page in releases for r in page if r['tag_name'] == tag), None)
+    existing = find_release(repo, tag)
     if existing and not existing['draft']:
         verify_assets(existing, expected)
         print('Already published with matching assets: ' + existing['html_url'])
         return
     if existing and existing['target_commitish'] != commit:
-        raise ValueError('Existing draft belongs to a different source commit')
+        previous = existing['target_commitish']
+        if not re.fullmatch('[0-9a-f]{40}', previous):
+            raise ValueError('Existing draft does not target an exact source commit')
+        original = api(f'repos/{repo}/contents/studio/distribution/{tag}.json?ref={previous}')
+        original_manifest = json.loads(base64.b64decode(original['content']))
+        if original_manifest != manifest or (existing.get('body') or '').strip() != Path('release-notes.md').read_text(encoding='utf-8').strip():
+            raise ValueError('Existing draft differs from this reviewed release')
+    refs = api(f'repos/{repo}/git/matching-refs/tags/{tag}')
+    for ref in refs:
+        if ref['ref'] == f'refs/tags/{tag}' and ref['object']['sha'] != commit:
+            raise ValueError('Existing tag targets a different commit; refusing to move it')
 
     for item in assets:
         blob = api(f"repos/{repo}/git/blobs/{item['blob_sha']}")
@@ -79,7 +93,10 @@ def main():
     if not existing:
         gh('release', 'create', tag, '--repo', repo, '--target', commit,
            '--title', manifest['title'], '--notes-file', 'release-notes.md', '--draft')
-        existing = api(f'repos/{repo}/releases/tags/{tag}')
+        # The tag endpoint excludes unpublished releases. Read drafts from the list.
+        existing = find_release(repo, tag)
+        if existing is None:
+            raise ValueError('Created draft is not visible in the release list')
     uploaded = {a['name']: a for a in existing['assets']}
     if set(uploaded) - {a['name'] for a in expected}:
         raise ValueError('Draft contains unrecognized assets; refusing to replace them')
@@ -93,7 +110,7 @@ def main():
     verify_assets(api(f'repos/{repo}/releases/{existing["id"]}'), expected)
     # The draft is made public only after every attachment is verified.
     gh('release', 'edit', tag, '--repo', repo, '--draft=false', '--latest',
-       '--title', manifest['title'], '--notes-file', 'release-notes.md')
+       '--target', commit, '--title', manifest['title'], '--notes-file', 'release-notes.md')
     release = api(f'repos/{repo}/releases/{existing["id"]}')
     if release['draft']:
         raise ValueError('Release remained a draft')

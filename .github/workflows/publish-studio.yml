@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - studio/distribution/studio-v0.2.0.json
+      - studio/scripts/publish-github-release.py
       - .github/workflows/publish-studio.yml
   workflow_dispatch:
 
@@ -36,4 +37,3 @@ jobs:
           fetch_file studio/scripts/publish-github-release.py publish-release.py
       - name: Verify original ZIPs, upload attachments, then publish
         run: python3 publish-release.py
-
