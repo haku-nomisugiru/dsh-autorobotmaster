@@ -1,0 +1,43 @@
+{
+  "native": true,
+  "testedAt": "2026-11-12T15:45:17.824Z",
+  "defaultTheme": "night",
+  "renderedFonts": {
+    ".hero-display": [
+      {
+        "familyName": "OCR A Extended",
+        "postScriptName": "OCRAExtended",
+        "isCustomFont": true,
+        "glyphCount": 16
+      }
+    ],
+    ".spec-heading h2": [
+      {
+        "familyName": "Noto Sans SC",
+        "postScriptName": "Noto-Sans-SC-Thin",
+        "isCustomFont": true,
+        "glyphCount": 5
+      }
+    ],
+    ".tab-item button span": [
+      {
+        "familyName": "Noto Sans SC",
+        "postScriptName": "Noto-Sans-SC-Thin",
+        "isCustomFont": true,
+        "glyphCount": 6
+      }
+    ]
+  },
+  "chineseAxis": 100,
+  "glowAngles": [
+    "66.653deg",
+    "192.691deg"
+  ],
+  "stageViews": 5,
+  "settingsViews": 5,
+  "compactViewport": "1000x700",
+  "reducedMotion": true,
+  "paidModelCalled": false,
+  "cadModified": false,
+  "screenshots": "docs/screenshots/refinement"
+}

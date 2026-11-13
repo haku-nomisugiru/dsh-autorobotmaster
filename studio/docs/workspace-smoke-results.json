@@ -1,0 +1,17 @@
+{
+  "native": true,
+  "testedAt": "2026-11-12T06:19:51.942Z",
+  "pathInputCreatesDirectory": true,
+  "unicodeAndSpaces": true,
+  "persistedAfterReload": true,
+  "existingModelDiscovery": true,
+  "invalidPathRetainsSettings": true,
+  "mcp": "MCP 已连接，发现 66 个工具；未操作 CAD",
+  "mcpUsesSelectedWorkspace": true,
+  "downloadInSelectedWorkspace": true,
+  "downloadBytes": 39700,
+  "restoreDefault": true,
+  "existingFilesPreserved": true,
+  "cadSaveVerifiedWithFixtureOnly": true,
+  "folderPickerManuallyTested": false
+}

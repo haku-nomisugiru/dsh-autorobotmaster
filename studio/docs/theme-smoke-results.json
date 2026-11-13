@@ -1,0 +1,43 @@
+{
+  "native": true,
+  "testedAt": "2026-11-12T16:12:27.774Z",
+  "themes": [
+    {
+      "id": "clay",
+      "accent": "rgb(157, 86, 62)",
+      "hero": "color(srgb 0.750196 0.569216 0.508039)",
+      "artBackground": "color(srgb 0.0664314 0.0497255 0.0440784)",
+      "frame": "linear-gradient(90deg, rgb(157, 86, 62), color(srgb 0.827059 0.701765 0.659412), rgb(157, 86, 62), color(srgb 0.711765 0.502941 0.432353), rgb(157, 86, 62))",
+      "ray": "conic-gradient(rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 210deg, color(srgb 0.615686 0.337255 0.243137 / 0.12) 260deg, color(srgb 0.615686 0.337255 0.243137 / 0.55) 300deg, rgb(157, 86, 62) 330deg, rgba(0, 0, 0, 0) 360deg)"
+    },
+    {
+      "id": "blue",
+      "accent": "rgb(24, 76, 220)",
+      "hero": "color(srgb 0.411176 0.543725 0.910784)",
+      "artBackground": "color(srgb 0.0351373 0.0473725 0.0812549)",
+      "frame": "linear-gradient(90deg, rgb(24, 76, 220), color(srgb 0.592353 0.684118 0.938235), rgb(24, 76, 220), color(srgb 0.320588 0.473529 0.897059), rgb(24, 76, 220))",
+      "ray": "conic-gradient(rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 210deg, color(srgb 0.0941176 0.298039 0.862745 / 0.12) 260deg, color(srgb 0.0941176 0.298039 0.862745 / 0.55) 300deg, rgb(24, 76, 220) 330deg, rgba(0, 0, 0, 0) 360deg)"
+    },
+    {
+      "id": "paper",
+      "accent": "rgb(54, 51, 244)",
+      "hero": "color(srgb 0.487647 0.48 0.971961)",
+      "artBackground": "color(srgb 0.0421961 0.0414902 0.086902)",
+      "frame": "linear-gradient(90deg, rgb(54, 51, 244), color(srgb 0.645294 0.64 0.980588), rgb(54, 51, 244), color(srgb 0.408824 0.4 0.967647), rgb(54, 51, 244))",
+      "ray": "conic-gradient(rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 210deg, color(srgb 0.211765 0.2 0.956863 / 0.12) 260deg, color(srgb 0.211765 0.2 0.956863 / 0.55) 300deg, rgb(54, 51, 244) 330deg, rgba(0, 0, 0, 0) 360deg)"
+    },
+    {
+      "id": "night",
+      "accent": "rgb(185, 171, 255)",
+      "hero": "color(srgb 0.821569 0.785882 1)",
+      "artBackground": "color(srgb 0.0730196 0.0697255 0.0894902)",
+      "frame": "linear-gradient(90deg, rgb(185, 171, 255), color(srgb 0.876471 0.851765 1), rgb(185, 171, 255), color(srgb 0.794118 0.752941 1), rgb(185, 171, 255))",
+      "ray": "conic-gradient(rgba(0, 0, 0, 0) 0deg, rgba(0, 0, 0, 0) 210deg, color(srgb 0.945098 0.934118 1 / 0.12) 260deg, color(srgb 0.945098 0.934118 1 / 0.55) 300deg, color(srgb 0.945098 0.934118 1) 330deg, rgba(0, 0, 0, 0) 360deg)"
+    }
+  ],
+  "fontsLoaded": true,
+  "persistedAfterReload": true,
+  "screenshots": "docs/screenshots/themes",
+  "paidModelCalled": false,
+  "cadModified": false
+}

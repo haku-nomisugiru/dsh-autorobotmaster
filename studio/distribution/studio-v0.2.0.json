@@ -1,0 +1,18 @@
+{
+  "tag": "studio-v0.2.0",
+  "title": "RoboMaster Studio 0.2.0 · Codex 桌面版 / DSH 插件",
+  "assets": [
+    {
+      "name": "RoboMaster-Studio-Codex-v0.2.0-win-x64.zip",
+      "size": 11946878,
+      "sha256": "97bdaf696ef215927fe64b17c62256ad0481c9acf53a0a393297fc362dd6d651",
+      "blob_sha": "fa044463225eb45195f7745426d28e7889e1bf3f"
+    },
+    {
+      "name": "RoboMaster-Studio-DSH-v0.2.0.zip",
+      "size": 22920,
+      "sha256": "7a867ee185ecfbef1fe294db9deb8895d68da2aca75051cc18c876bc108f935a",
+      "blob_sha": "3e8f7d703f310956efff0eed645ebc0351edfadd"
+    }
+  ]
+}

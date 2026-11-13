@@ -1,0 +1,6 @@
+{
+  "$schema": "https://schema.tauri.app/config/2", "productName": "RoboMaster Studio", "version": "0.2.0", "identifier": "studio.robomaster.desktop",
+  "build": {"beforeDevCommand": "npm run dev", "devUrl": "http://127.0.0.1:1420", "beforeBuildCommand": "npm run build", "frontendDist": "../dist"},
+  "app": {"windows": [{"title":"RoboMaster Studio · 机械设计工作台","width":1440,"height":960,"minWidth":1000,"minHeight":700,"backgroundColor":"#101018"}], "security": {"csp":"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: asset: http://asset.localhost; connect-src ipc: http://ipc.localhost; font-src 'self' data:; object-src 'none'; base-uri 'self'"}},
+  "bundle": {"active":false,"icon":["icons/icon.ico"]}
+}

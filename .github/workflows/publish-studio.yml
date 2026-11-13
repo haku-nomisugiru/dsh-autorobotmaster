@@ -1,0 +1,39 @@
+name: Publish RoboMaster Studio 0.2.0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - studio/distribution/studio-v0.2.0.json
+      - .github/workflows/publish-studio.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-studio-v0.2.0
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'haku-nomisugiru/autorobomaster' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Read the publication files from this exact commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          fetch_file() {
+            gh api -H 'Accept: application/vnd.github.raw+json' \
+              "repos/$GITHUB_REPOSITORY/contents/$1?ref=$GITHUB_SHA" > "$2"
+          }
+          fetch_file studio/distribution/studio-v0.2.0.json release-manifest.json
+          fetch_file studio/docs/releases/studio-v0.2.0.md release-notes.md
+          fetch_file studio/scripts/publish-github-release.py publish-release.py
+      - name: Verify original ZIPs, upload attachments, then publish
+        run: python3 publish-release.py
+

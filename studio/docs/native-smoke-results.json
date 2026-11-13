@@ -1,0 +1,15 @@
+{
+  "native": true,
+  "projectId": "4d124c12-a826-491c-99fc-b66f6fbfd28c",
+  "windowMinimum": true,
+  "persistence": true,
+  "mcp": "MCP 已连接，发现 66 个工具；未操作 CAD",
+  "ragCandidates": 12,
+  "stepTotal": 132,
+  "download": {
+    "id": "bearing_608zz",
+    "bytes": 39700,
+    "sha256": "62d262cc91fb6e213ae85f182811201787e583d527d9a7718ea30a08e1f19fc9"
+  },
+  "paidModelTested": false
+}
