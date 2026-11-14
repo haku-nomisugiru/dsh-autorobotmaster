@@ -16,7 +16,6 @@ Rust · Tauri 2 · SolidWorks MCP · Codex · DeepSeek Harness
 
 面向 RoboMaster 机械设计的本地工作台。五个阶段共享同一条项目对话，把需求、参数、来源、模型操作与验收证据一起保存。通过 [SolidWorks Automation MCP](https://github.com/wzyn20051216/solidworks-automation-skill) 连接本机 SolidWorks；可使用已有 Codex 登录、兼容模型 API，或作为原生插件运行在 DeepSeek Harness 内。
 
-> 当前版本为 **Studio 0.2.0**。本仓库保留旧 C# 工作台；新版源码位于 `studio/`，使用独立标签 `studio-v0.2.0`。旧版说明与下载仍见 [C# v1.1.0](https://github.com/haku-nomisugiru/autorobomaster/tree/v1.1.0)。两者的数据格式不同，不自动迁移。
 
 ## 选择你的入口
 
