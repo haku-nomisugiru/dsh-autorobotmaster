@@ -1,0 +1,28 @@
+{
+  "name": "@robomaster/studio-dsh",
+  "version": "0.2.0",
+  "description": "RoboMaster Studio for DeepSeek Harness: five-stage SolidWorks workflow, specifications, memory and reusable skills.",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haku-nomisugiru/autorobomaster.git"
+  },
+  "exports": {
+    ".": "./studio/plugins/dsh/index.js",
+    "./client": "./studio/plugins/dsh/client.js",
+    "./locale/*.json": "./studio/plugins/dsh/locale/*.json",
+    "./icon": "./studio/plugins/dsh/icon.svg"
+  },
+  "files": ["studio/plugins/dsh/", "README.md", "LICENSE"],
+  "dsh": {
+    "bundle": { "patch": "./studio/plugins/dsh/cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": ["@deepseek-ai/dsh-client-ui-conversation", "@deepseek-ai/dsh-client-ui-commands"],
+      "external": ["react"]
+    }
+  }
+}
