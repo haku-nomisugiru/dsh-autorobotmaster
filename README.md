@@ -79,7 +79,6 @@ Studio 保存自己的项目历史，不接管 Codex 桌面中的已有聊天。
 
 ![桌面版模型工作区设置](studio/docs/screenshots/refinement/native-workspace.png)
 
-*工作区界面展示沿用 0.1 系列截图；截图中的本地测试路径仅作示例。0.2 保留相同的目录设置方式。*
 
 记忆与技能参考 Hermes Agent 的机制，使用独立实现：
 
