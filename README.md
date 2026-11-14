@@ -29,7 +29,7 @@ Rust · Tauri 2 · SolidWorks MCP · Codex · DeepSeek Harness
 | 外观 | 墨夜、研究白、蓝图、陶土；可选字体 | 随 DSH 当前主题切换 |
 | 下载 | [Windows x64 ZIP](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-Codex-v0.2.0-win-x64.zip) | [插件 ZIP](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-DSH-v0.2.0.zip) |
 
-需要可正常运行的 SolidWorks 和单独安装的上游 MCP，才能执行 CAD 操作。桌面版还需要 Windows 10/11 x64 与 WebView2 Runtime。安装包不包含 SolidWorks、模型额度、字体或 RAG 的 CAD 资产。
+需要可正常运行的 SolidWorks 和单独安装的上游 MCP，才能执行 CAD 操作。桌面版还需要 Windows 10/11 x64 与 WebView2 Runtime。
 
 ## 一个项目，五个阶段
 
@@ -49,7 +49,7 @@ Rust · Tauri 2 · SolidWorks MCP · Codex · DeepSeek Harness
 
 ![Codex 真实调用 update_spec，将底盘外宽 420 mm 写入规格](studio/docs/screenshots/integrations/codex-desktop.png)
 
-上图来自最终桌面程序的真实接入测试：Codex 调用 `update_spec`，将 **底盘外宽 420 mm** 写入「用户明确要求」，重载后仍保留。这验证了模型调用、工具执行与本地持久化；该测试没有创建或验收 CAD 模型。
+上图来自接入测试
 
 1. 下载并完整解压桌面包；先安装并登录 Codex，再运行 `Start-Codex-Studio.cmd`。
 2. 打开右上角设置 → **连接与模型**，选择 Codex，点击 **保存并测试模型**。模型 ID 可留空，使用 Codex 默认模型。
@@ -88,7 +88,7 @@ Studio 保存自己的项目历史，不接管 Codex 桌面中的已有聊天。
 
 ## 视觉与交互
 
-默认 **墨夜**，英文与数字使用本机 **OCR A Extended**，中文使用 **Noto Sans SC Thin**。机械爆炸图、细线网格、缓慢的按钮边缘流光与轻微视差构成工作台视觉；无人物或人物雕塑。图片为概念插画，不是当前 CAD 的实时预览。
+默认 **墨夜**，英文与数字使用本机 **OCR A Extended**，中文使用 **Noto Sans SC Thin**。图片为概念插画。
 
 | 墨夜 · 默认 | 蓝图 |
 | --- | --- |
@@ -96,22 +96,7 @@ Studio 保存自己的项目历史，不接管 Codex 桌面中的已有聊天。
 | **研究白** | **陶土** |
 | ![研究白](studio/docs/screenshots/themes/paper-home.png) | ![陶土](studio/docs/screenshots/themes/clay-home.png) |
 
-切换主题时，标题、按钮、边框流光与机械图板共同使用当前主题色。动画遵循系统「减少动态效果」偏好。缺少本机字体时显示提示并使用回退字体；发布包不附带字体文件。完整规范见 [视觉系统](studio/docs/DESIGN.md)。
-
-## 验证状态与当前边界
-
-| 验证 | 结果 |
-| --- | --- |
-| Rust 核心回归 | 23 项通过 |
-| 真实 Codex 工具往返 | 1 项独立测试通过；最终桌面程序完成规格写入与重载 |
-| 界面回归 | 16 项原有测试 + 1 项 Codex 设置测试通过 |
-| DSH 状态与路径 | 2 项通过，覆盖越界、目录链接、待确认项与状态恢复 |
-| DSH 原生宿主 | 安装、弹窗操作、主题、会话命令、模型工具入口与 MCP 握手通过 |
-| 模型驱动真实 CAD 全流程 | **未完成整车或复杂装配的端到端机械验收** |
-
-这些是本地验证记录，不是当前仓库 CI 成功徽章。详细范围见 [0.2 接入与验证](studio/docs/INTEGRATIONS.md)；此前的界面、RAG 和下载验证见 [0.1 验证记录](studio/docs/VALIDATION.md)。
-
-CAD 超时或取消可能意味着执行结果未知，程序不会自动重试该操作。上游工具成功与零件满足机械要求分别记录。step.parts 入口使用公开目录搜索接口，不声称提供未公开的 text-to-CAD 生成 API。
+切换主题时，标题、按钮、边框流光与机械图板共同使用当前主题色。动画遵循系统「减少动态效果」偏好。缺少本机字体时显示提示并使用回退字体。完整规范见 [视觉系统](studio/docs/DESIGN.md)。
 
 ## 从源码构建
 
@@ -128,7 +113,7 @@ node --test tests/dsh-service.test.mjs
 .\scripts\package-integrations.ps1   # Codex 桌面包与 DSH 插件包
 ```
 
-仅预览界面可运行 `npm.cmd run dev`；浏览器模式会标明「界面预览」，不执行模型与 CAD。界面回归需要 Playwright Chromium；真实 Codex、SolidWorks 与 RAG 测试需要对应本机环境。
+仅预览界面可运行 `npm.cmd run dev`；浏览器模式会标明「界面预览」。界面回归需要 Playwright Chromium。 Codex、SolidWorks 与 RAG 测试需要对应本机环境。
 
 ```text
 studio/
