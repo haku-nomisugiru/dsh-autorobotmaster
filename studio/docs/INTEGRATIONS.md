@@ -1,6 +1,14 @@
-# RoboMaster Studio 0.2 — Codex 与 DSH
+# RoboMaster Studio 0.2 — API、Codex 与 DSH
 
-两个版本都保留五阶段工作流、结构化规格、模型工作区、记忆与技能。Codex 版运行独立的 Rust 桌面程序；DSH 版作为原生插件运行在 DSH 当前会话内。
+三个入口都保留五阶段工作流、结构化规格、模型工作区、记忆与技能。API 与 Codex 桌面包使用同一个 0.2.0 Rust / Tauri 程序，只是新数据目录的默认接入方式不同；已有设置优先。DSH 版作为原生插件运行在 DSH 当前会话内。
+
+## API 桌面版
+
+1. 解压 `RoboMaster-Studio-API-v0.2.0-win-x64.zip`，运行 `Start-API-Studio.cmd`。
+2. 打开右上角设置 → 连接与模型，选择 Chat Completions 兼容或 Responses API，填写 API 地址、模型 ID 与 API Key，点击“保存并测试模型”。
+3. 配置 SolidWorks MCP，并在“模型工作区”选择模型读取与保存目录。
+
+API 接入可以独立使用，不需要安装或登录 Codex。两种桌面包均可在设置中切换 API / Codex，功能相同；便携项目数据保存到程序旁的 `data/`。详细步骤见 [API 使用说明](API.md)。
 
 ## Codex 桌面版
 
@@ -24,10 +32,10 @@
 
 ## DSH 插件版
 
-已验证的程序：桌面 `DeepSeek Harness.lnk` 指向的 `D:\dsh\DeepSeek Harness.exe`，版本 `0.2.1-rc.3`。
+已验证的程序：桌面 `DeepSeek Harness.lnk` 指向的 `D:\dsh\DeepSeek Harness.exe`。原生界面与 MCP 检查使用 `0.2.1-rc.3`；Git 仓库组合包安装、命令、工具与 Client 加载已在 `0.2.2-rc.3` 复测。
 
-1. 将 `RoboMaster-Studio-DSH-v0.2.0.zip` 解压到一个固定目录。安装后不要移动该目录，因为 DSH 对本地插件使用目录链接。
-2. 打开 DSH → **插件** → **添加插件**，输入解压后含 `package.json` 的文件夹完整路径，点击安装，然后启用。
+1. 打开 DSH → **插件** → **添加插件**，输入 `https://github.com/haku-nomisugiru/autorobomaster`。仓库根目录已声明 DSH 组合包，之前出现“没有声明组合包”时可重新添加同一地址。
+2. 点击安装，然后启用。也可以将 `RoboMaster-Studio-DSH-v0.2.0.zip` 解压到固定目录，输入含 `package.json` 的文件夹完整路径进行本地安装；安装后不要移动该目录，DSH 会使用目录链接。
 3. 打开一个会话，输入框上方会出现 **ROBOMASTER / STUDIO**。点击“展开”打开完整工作台；关闭弹窗后仍停留在原会话。
 4. 工作台设置中填写模型工作区、MCP Python 路径和 MCP `server.py` 路径。“测试 MCP”只执行连接握手和工具发现。
 5. 在 DSH 自身完成模型登录或 API 配置。插件中的“发送”“开始”和“总结本会话”会驱动当前 DSH 会话所选模型；插件不另存 DSH 的凭据。
@@ -59,6 +67,8 @@
 
 ## 验证说明
 
+- API：安装包内主程序与已发布的 Codex 0.2.0 程序 SHA-256 完全一致。独立数据目录默认使用 Chat Completions，可切换并保存 Responses 设置；未使用真实 API Key 或发起付费模型调用。
+- DSH Git 仓库安装：使用 `0.2.2-rc.3` 的实际运行时，在独立配置中直接安装上述 GitHub URL，验证组合包登记、Host 加载、`/robomaster` 命令、`robomaster_studio` 工具和 Client 模块。
 - Codex：使用本机真实登录完成结构化回答和两轮工具往返；工具返回 `42.75`，模型能引用该实际结果。最终 Rust 桌面程序也已通过真实调用：模型将“底盘外宽 420 mm”通过 `update_spec` 写入结构化规格，刷新后仍保留。另有 Rust 校验，拒绝当前阶段未开放的工具和无效参数。
 - DSH：使用实际安装的 DSH 在独立测试配置中安装插件，验证原生 Client 注册、命令和模型工具入口、工作区持久化、阶段切换、增删窗口、规格编辑、技能导入与启停、MCP 握手。
 - DSH 路径与状态测试覆盖工作区越界、Windows 目录链接、用户回答权限、待确认项阻止 CAD 操作和重启后状态恢复。

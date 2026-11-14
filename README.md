@@ -8,7 +8,7 @@
 
 Rust · Tauri 2 · SolidWorks MCP · Codex · DeepSeek Harness
 
-[下载 Codex 桌面版](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-Codex-v0.2.0-win-x64.zip) · [下载 DSH 插件](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-DSH-v0.2.0.zip) · [发行说明](https://github.com/haku-nomisugiru/autorobomaster/releases/tag/studio-v0.2.0)
+[下载 API 桌面版](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-API-v0.2.0-win-x64.zip) · [下载 Codex 桌面版](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-Codex-v0.2.0-win-x64.zip) · [下载 DSH 插件](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-DSH-v0.2.0.zip) · [发行说明](https://github.com/haku-nomisugiru/autorobomaster/releases/tag/studio-v0.2.0)
 
 ![墨夜主题：五阶段工作台与结构化规格](studio/docs/screenshots/themes/night-home.png)
 
@@ -19,14 +19,20 @@ Rust · Tauri 2 · SolidWorks MCP · Codex · DeepSeek Harness
 
 ## 选择你的入口
 
-| | Codex 桌面版 | DSH 原生插件 |
-| --- | --- | --- |
-| 运行方式 | 独立 Rust / Tauri Windows 程序 | 安装在 DeepSeek Harness 当前会话中 |
-| 模型来源 | 本机 Codex 登录；也可切换 Responses / Chat Completions API | DSH 自己配置的模型与账户 |
-| 开始使用 | 解压后运行 `Start-Codex-Studio.cmd` | DSH「插件 → 添加插件」选择解压目录 |
-| 对话与数据 | Studio 项目持久化；便携包旁的 `data/` | DSH 对话；插件状态按会话隔离 |
-| 外观 | 墨夜、研究白、蓝图、陶土；可选字体 | 随 DSH 当前主题切换 |
-| 下载 | [Windows x64 ZIP](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-Codex-v0.2.0-win-x64.zip) | [插件 ZIP](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-DSH-v0.2.0.zip) |
+| | API 桌面版 | Codex 桌面版 | DSH 原生插件 |
+| --- | --- | --- | --- |
+| 适合谁 | 已有模型 API，希望独立使用工作台 | 已安装并登录 Codex | 希望在 DeepSeek Harness 当前会话内使用 |
+| 运行方式 | 独立 Rust / Tauri Windows 程序 | 同一套 Rust / Tauri Windows 程序 | DSH 原生插件 |
+| 默认模型入口 | Chat Completions 兼容 / Responses API | 本机 Codex 登录；也支持切换到 API | DSH 自己配置的模型与账户 |
+| 开始使用 | 解压后运行 `Start-API-Studio.cmd`，填写 API 地址、模型 ID 与 Key | 解压后运行 `Start-Codex-Studio.cmd` | 在「插件 → 添加插件」输入仓库地址，或选择插件 ZIP 的解压目录 |
+| 是否需要 Codex | 不需要安装或登录 Codex | 使用 Codex 接入时需要 | 由 DSH 中选择的模型决定 |
+| 对话与数据 | Studio 项目；便携目录旁的 `data/` | Studio 项目；便携目录旁的 `data/` | DSH 对话；插件状态按会话隔离 |
+| 外观 | 墨夜、研究白、蓝图、陶土；可选字体 | 相同的桌面主题与字体设置 | 随 DSH 当前主题切换 |
+| 下载 | [API · Windows x64 ZIP](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-API-v0.2.0-win-x64.zip) | [Codex · Windows x64 ZIP](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-Codex-v0.2.0-win-x64.zip) | [DSH 插件 ZIP](https://github.com/haku-nomisugiru/autorobomaster/releases/download/studio-v0.2.0/RoboMaster-Studio-DSH-v0.2.0.zip) |
+
+**API 与 Codex 桌面包使用同一个 0.2.0 Rust 程序，只是新数据目录的默认接入方式不同。** API 版可独立使用，五阶段、模型工作区、记忆和 Skills 功能相同；已有设置会保留。配置步骤见 [API 接入说明](studio/docs/API.md)。
+
+DSH 可以直接安装此仓库地址：`https://github.com/haku-nomisugiru/autorobomaster`。安装后启用插件，在会话输入框上方点击 **ROBOMASTER / STUDIO → 展开**。之前遇到「没有声明组合包」时，可重新添加同一地址安装。
 
 需要可正常运行的 SolidWorks 和单独安装的上游 MCP，才能执行 CAD 操作。桌面版还需要 Windows 10/11 x64 与 WebView2 Runtime。
 
@@ -60,12 +66,12 @@ Studio 保存自己的项目历史，不接管 Codex 桌面中的已有聊天。
 
 ## DSH 接入：在当前会话打开工作台
 
-1. 解压插件包到固定目录，打开 DSH → **插件 → 添加插件**，输入包含 `package.json` 的目录，安装并启用。
+1. 打开 DSH → **插件 → 添加插件**，输入 `https://github.com/haku-nomisugiru/autorobomaster`，安装并启用。也可以将插件 ZIP 解压到固定目录，再输入包含 `package.json` 的目录进行本地安装。
 2. 在会话输入框上方点击 **ROBOMASTER / STUDIO → 展开**，打开完整工作台。关闭工作台后仍停留在原会话。
 3. 工作台设置中配置模型工作区、MCP Python 与 `server.py`，点击 **测试 MCP**。
 4. 使用 DSH 自己的模型配置发送需求；插件通过 `robomaster_studio` 工具读写规格、检索组件、记录迭代与调用 CAD。
 
-插件更新后需要重启 DSH。本地安装通过目录链接加载，不要移动已安装的插件目录。已验证 DSH `0.2.1-rc.3` 的原生安装、界面、工具入口与 MCP 握手；**尚未完成真实 DeepSeek 推理测试**。详见 [插件说明](studio/plugins/dsh/README.md)。
+插件更新后需要重启 DSH。本地安装通过目录链接加载，不要移动已安装的插件目录。已验证 DSH `0.2.1-rc.3` 的原生界面与 MCP 握手，并在 `0.2.2-rc.3` 复测 GitHub 地址安装、命令、模型工具与界面模块加载；**尚未完成真实 DeepSeek 推理测试**。详见 [插件说明](studio/plugins/dsh/README.md)。
 
 ## 模型工作区、记忆与 Skills
 

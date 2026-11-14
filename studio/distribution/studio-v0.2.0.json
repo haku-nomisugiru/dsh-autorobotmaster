@@ -1,7 +1,34 @@
 {
   "tag": "studio-v0.2.0",
-  "title": "RoboMaster Studio 0.2.0 · Codex 桌面版 / DSH 插件",
+  "title": "RoboMaster Studio 0.2.0 · API / Codex / DSH",
   "assets": [
+    {
+      "name": "RoboMaster-Studio-API-v0.2.0-win-x64.zip",
+      "size": 11943855,
+      "sha256": "7bdd45101a49dac08cdd834af853ff32574a90da52e13ac8a7b9c0299526298e",
+      "blob_parts": [
+        {
+          "size": 3000000,
+          "blob_sha": "94cefa42008ea9832061f2583638afd95544ff95",
+          "sha256": "94706045e1791d5997dcf20a035cddf9f20ef28829324cda441ecfddd11ccce1"
+        },
+        {
+          "size": 3000000,
+          "blob_sha": "2fa746cdfc8c16817876908a8835323f180120cb",
+          "sha256": "93418e1bb6d2cd9e890adf88bf2fe422d3bf2f33052c0b2a75283b917080bf98"
+        },
+        {
+          "size": 3000000,
+          "blob_sha": "7c9244182884c10d95443cbea9435db002f02ffc",
+          "sha256": "68c684735bf75f38e655845411b224c6dba88b82a95b0a8198934267efee96e7"
+        },
+        {
+          "size": 2943855,
+          "blob_sha": "35427cda235e1b3be796fd278efbe3811f8b172a",
+          "sha256": "2285af9f0df7dd729cf5ab1ca5d4ab41daf0952ce0b273b6b07c8b2f4cd549a4"
+        }
+      ]
+    },
     {
       "name": "RoboMaster-Studio-Codex-v0.2.0-win-x64.zip",
       "size": 11946878,

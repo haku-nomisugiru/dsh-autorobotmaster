@@ -43,3 +43,4 @@ foreach ($file in @('package.json','index.js','service.js','mcp.js','workflow.js
 }
 Compress-Archive -LiteralPath $pluginStage -DestinationPath (Join-Path $studioRoot "release\$pluginName.zip") -Force
 Get-FileHash -LiteralPath (Join-Path $studioRoot "release\$name.zip"),(Join-Path $studioRoot "release\$pluginName.zip") -Algorithm SHA256 | Select-Object Path,Hash | ConvertTo-Json
+& (Join-Path $PSScriptRoot 'package-api.ps1')
